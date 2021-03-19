@@ -12,6 +12,9 @@ Follow along from the book Django 3 By Example
 ## Start Development Server
 * `python manage.py runserver`
 
+To run with a custom host, port or use a specific settings file use the following
+* `python manage.py runserver 127.0.0.1:8001 \--settings=mysite.settings`
+
 ## Django Project Structure
 * `manage.py` - Thin wrapper around `django-admin.py`
 * `mysite/` - Project directory 
