@@ -49,3 +49,11 @@ with the current models and existing migrations.
   * sync the databsase with the new model using `python manage.py migrate`
   * Upon every change to the models.py file you must create a new migration using `makemigrations`.
     This allows Django to keep track of all model changes. It must then be applied using `migrate` to keep the db in sync with the models
+
+## Adding models to the admin site
+* Edit the admin.py file of the blog application (see file)
+
+## How to create a superuser
+* Run `python manage.py createsuperuser`
+
+

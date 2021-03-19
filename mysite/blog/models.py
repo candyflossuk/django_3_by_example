@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
 
     STATUS_CHOICES = (
-        ("draft", "DRAFT"),
+        ("draft", "Draft"),
         ("published", "Published"),
     )
 
