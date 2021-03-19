@@ -56,4 +56,21 @@ with the current models and existing migrations.
 ## How to create a superuser
 * Run `python manage.py createsuperuser`
 
+## Working with Querysets and managers
+* The Django ORM is based on QuerySets. A QuerySet is a collection of database queries that retrieve objects from your db.
+* Querysets can have filters applied to them to narrow down the results based on params given.
+* Run `python manage.py shell` to open up the Django 'shell'
+* An object can be created by then using
+  * `from django.contrib.auth.models import User`
+  * `from blog.models import Post`
+  * `user = User.objects.get(username='admin')` # Retrieve the user object - get is used to return ONLY one
+  *  `post = Post(title='Another post', slug='another-post',body='Post body.',author=user)`
+  * `post.save()`
+  
+* To Update simply use . notation as follows:
+  * post.title = 'New title'
+  * post.save()
 
+* To retrieve all objects from a table use all() from the default objects manager
+  * `all_posts = Post.objects.all()` # This is lazy - and is evaluated when it hast to be (ie using all_posts on shell)
+  
