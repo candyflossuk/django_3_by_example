@@ -9,6 +9,9 @@ Follow along from the book Django 3 By Example
 
 * ` python manage.py migrate`
 
+## Start Development Server
+* `python manage.py runserver`
+
 ## Django Project Structure
 * `manage.py` - Thin wrapper around `django-admin.py`
 * `mysite/` - Project directory 
