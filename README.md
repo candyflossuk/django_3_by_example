@@ -67,10 +67,51 @@ with the current models and existing migrations.
   *  `post = Post(title='Another post', slug='another-post',body='Post body.',author=user)`
   * `post.save()`
   
+
 * To Update simply use . notation as follows:
   * post.title = 'New title'
   * post.save()
 
+
 * To retrieve all objects from a table use all() from the default objects manager
   * `all_posts = Post.objects.all()` # This is lazy - and is evaluated when it hast to be (ie using all_posts on shell)
   
+
+* To filter a QuerySet you can use the filter() method 
+  * `Post.objects.filter(publish__year=2021)`
+  * This will return a query set as follows `<QuerySet [<Post: New title>, <Post: Who was Django Reinhardt?>]>`
+  * To filter by multiple fields - you can use the following
+  * `Post.objects.filter(publish__year=2021, author__username='admin')` # This returns the same as above 
+
+
+* To exclude results in a QuerySet you can use exclude()
+  * `Post.objects.filter(publish__year=2021).exclude(title__startswith='Who')` # Returns one less result than the above
+
+
+* You can order results by using order_by() within the manager
+  * `Post.objects.order_by('title')`
+* As ascending order is implied - you can use the `-` sign to order in descending order
+  * `Post.objects.order_by('-title')`
+
+
+* Objects can be deleted using the delete() method
+  * `post = Post.objects.get(id=1)`
+  * `post.delete()`
+* In running delete any dependent relationships for ForeignKey objects defined with on_delete set to CASCADE will be deleted
+
+### When are QuerySets evaluated?
+* The QuerySet does not hit the database until it is evaluated - where it is translated to a SQL query
+* QuerySets are evaluated in the following cases:
+  * First time you iterate over them
+  * When they are sliced `Post.objects.all()[:3]` for example
+  
+### Model Manager Creation
+* `objects` is the default manager of every model that retrieves all objects in the database.
+* Custom managers can be created - in this case all posts with the `published` status
+* There are two ways to add or customize managers:
+  * Add extra manager methods to an existing manager
+      * Provides you with a QuerySet API (Posts.objects.my_manager())
+  * Create a new manager by modifying the initial QuerySet that the manager returns.
+    * Provides you with Post.my_manager.all(), you can retrieve posts using Post.published.all()
+  
+* The custom manager can be used as follows:

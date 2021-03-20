@@ -1,13 +1,21 @@
 from django.db import models
-
-# Create your models here - each model will create a table
-
-from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+# Create your models here - each model will create a table
+
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedManager, self).get_queryset().filter(status="published")
+
 
 class Post(models.Model):
+
+    objects = (
+        models.Manager()
+    )  # The default manager - if you want to add your own managers and keep default you must add it
+    published = PublishedManager()  # Custom manager
 
     STATUS_CHOICES = (
         ("draft", "Draft"),
@@ -36,6 +44,7 @@ class Post(models.Model):
     class Meta:
         # Contains the metadata - sort results by the 'publish' field in descending order
         ordering = ("-publish",)
+        # default_manager_name can specify a different default manager
 
     def __str__(self):
         return self.title
