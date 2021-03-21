@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here - each model will create a table
 
@@ -48,3 +49,15 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        """
+        Use in templates to link to specific posts
+        :return: Canonical URL for the Post model that can be used as a specific URL for the model resource
+        """
+        # self.publish.year/month/day - The year reference does not exist until it is dynamically built at runtime
+        # noinspection PyUnresolvedReferences
+        return reverse(
+            "blog:post_detail",
+            args=[self.publish.year, self.publish.month, self.publish.day, self.slug],
+        )
