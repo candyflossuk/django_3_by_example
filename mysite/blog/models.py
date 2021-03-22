@@ -34,7 +34,7 @@ class Post(models.Model):
     body = models.TextField()  # Translates to TEXT
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(
-        auto_now=True
+        auto_now_add=True
     )  # auto_now_add - date is saved automatically when object is created
     updated = models.DateTimeField(auto_now=True)
     # auto_now - date is updated when saving an object
