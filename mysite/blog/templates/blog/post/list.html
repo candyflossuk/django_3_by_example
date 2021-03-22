@@ -14,5 +14,6 @@
             Published {{ post.publish }} by {{ post.author }}
         </p>
         {{ post.body|truncatewords:30|linebreaks}}
+        <!--truncatewords and linebreaks are template filters - applied to output -->
     {% endfor %}
 {% endblock %}
