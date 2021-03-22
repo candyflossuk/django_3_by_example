@@ -9,7 +9,7 @@ def post_list(request):  # request param required by all views
     posts = Post.published.all()
     # Use render() to render the list of posts with the template
     # Takes request context into account (template context processors are callables that set variables into the context)
-    return render(request, "/blog/post/list.html", {"posts": posts})
+    return render(request, "blog/post/list.html", {"posts": posts})
 
 
 def post_detail(request, year, month, day, post):

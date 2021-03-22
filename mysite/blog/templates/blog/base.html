@@ -1,0 +1,21 @@
+{% load static %}
+<!-- load static tells django to load the static template tags supplied by
+django.contrib.staticfiles - within INSTALLED_APPS -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/blog.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div id="content">
+        {% block content %}<!--This tells Django we want a block in this area, templates that inherit
+        from this template can fill in the blocks with content-->
+        {% endblock %}
+    </div>
+    <div id="sidebar">
+        <h2>My blog</h2>
+        <p>This is my blog.</p>
+    </div>
+</body>
+</html>
