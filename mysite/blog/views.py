@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post
 
 # Create your views here - a view is just Python function that receives a web req and returns a response
@@ -6,10 +7,27 @@ from .models import Post
 
 
 def post_list(request):  # request param required by all views
-    posts = Post.published.all()
+    object_list = Post.published.all()
+    paginator = Paginator(
+        object_list, 3
+    )  # 3 posts per page - Instantiate Paginator class with number of objects to display per page
+    page = request.GET.get(
+        "page"
+    )  # Get the page GET param indicating current page number
+    try:
+        posts = paginator.page(
+            page
+        )  # obtain the objects for the desired page by calling page() of Paginator
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        posts = paginator.page(paginator.num_pages)
+
     # Use render() to render the list of posts with the template
     # Takes request context into account (template context processors are callables that set variables into the context)
-    return render(request, "blog/post/list.html", {"posts": posts})
+    return render(request, "blog/post/list.html", {"page": page, "posts": posts})
 
 
 def post_detail(request, year, month, day, post):
