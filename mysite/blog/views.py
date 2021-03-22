@@ -13,14 +13,12 @@ def post_list(request):  # request param required by all views
 
 
 def post_detail(request, year, month, day, post):
-    # Retrieve a published post with the given slug and date
-    # Use get_object_or_404 as shortcut to retrieve desired post - if not match HTTP exception is returned
     post = get_object_or_404(
         Post,
         slug=post,
         status="published",
         publish__year=year,
         publish__month=month,
-        publish__date=day,
+        publish__day=day,
     )
     return render(request, "blog/post/detail.html", {"post": post})
