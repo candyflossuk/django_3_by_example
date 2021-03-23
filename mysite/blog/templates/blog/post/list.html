@@ -16,5 +16,6 @@
         {{ post.body|truncatewords:30|linebreaks}}
         <!--truncatewords and linebreaks are template filters - applied to output -->
     {% endfor %}
-    {% include "pagination.html" with page=posts %}
+    {% include "pagination.html" with page=page_obj %} <!-- Changed pagination - ListView generic view passes
+     selected page in variable called page_obj, so edit post/list.html -->
 {% endblock %}

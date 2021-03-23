@@ -1,9 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post
+from django.views.generic import ListView
 
 # Create your views here - a view is just Python function that receives a web req and returns a response
 # All logic to return desired response goes inside the view
+# Views can be defined as class methods - the advantages are that organizing code related to HTTP methods is cleaner
+# Class based views allow for multiple inheritance (to encourage re use)
+
+
+class PostListView(ListView):
+    queryset = Post.published.all()  # Use a specific QuerySet for retrieving objects
+    context_object_name = "posts"  # Use context variable posts for query results
+    paginate_by = 3  # Paginate the result - display 3 objects per page
+    template_name = "blog/post/list.html"  # Use custom templat to render page
 
 
 def post_list(request):  # request param required by all views

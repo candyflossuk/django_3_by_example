@@ -15,7 +15,10 @@ app_name = "blog"  # application namespace (organize URLs by application)
 
 urlpatterns = [
     # post views
-    path("", views.post_list, name="post_list"),
+    # path("", views.post_list, name="post_list"),
+    path(
+        "", views.PostListView.as_view(), name="post_list"
+    ),  # Use the class based view instead
     # Use angle brackets to capture values from URL
     path(
         "<int:year>/<int:month>/<int:day>/<slug:post>/",
