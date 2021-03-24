@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post
 from django.views.generic import ListView
+from .forms import EmailPostForm
+from django.core.mail import send_mail
 
 # Create your views here - a view is just Python function that receives a web req and returns a response
 # All logic to return desired response goes inside the view
@@ -50,3 +52,27 @@ def post_detail(request, year, month, day, post):
         publish__day=day,
     )
     return render(request, "blog/post/detail.html", {"post": post})
+
+
+def post_share(request, post_id):
+    # Retrieve post by id
+    post = get_object_or_404(Post, id=post_id, status="published")  # Retrieve post
+    sent = False
+    if request.method == "POST":
+        # Form was submitted
+        form = EmailPostForm(
+            request.POST  # contains the submitted data
+        )  # Use same view for displaying and processing
+        if form.is_valid():  # validates data in form
+            # Form fields passed validation
+            cd = form.cleaned_data
+            post_url = request.build_absolute_uri(post.get_absolute_url())
+            subject = f"{cd['name']} recommends you read {post.title}"
+            message = f"Read {post.title} at {post_url}\n\n{cd['name']}'s comments: {cd['comments']}"
+            send_mail(subject, message, "admin@myblog.com", [cd["to"]])
+            sent = True
+    else:
+        form = EmailPostForm()  # displays an empty form
+        return render(
+            request, "blog/post/share.html", {"post": post, "form": form, "sent": sent}
+        )
