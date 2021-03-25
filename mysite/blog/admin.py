@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comment
 
 
 # The admin.register decorator does the same thing as admin.site.register().
@@ -23,3 +23,10 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = "publish"
     # Posts are ordered by STATUS and PUBLISH columns by default - specified using ordering attribute
     ordering = ("status", "publish")
+
+
+@admin.register(Comment)
+class ContentAdmin(admin.ModelAdmin):
+    list_display = ("name", "email", "post", "created", "active")
+    list_filter = ("active", "created", "updated")
+    search_fields = ("name", "email", "body")
