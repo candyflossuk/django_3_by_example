@@ -1,4 +1,5 @@
 from django import forms
+from .models import Comment
 
 # Standard convention is to add forms inside a forms.py for each application
 
@@ -9,3 +10,9 @@ class EmailPostForm(forms.Form):
     to = forms.EmailField()
     # The widget attribute overrides the default widget - here Textarea is used instead of <input> element
     comments = forms.CharField(required=False, widget=forms.Textarea)
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment  # indicates which model to use to build the form - Django builds the form dynamically
+        fields = ("name", "email", "body")
