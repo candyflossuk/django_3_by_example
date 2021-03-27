@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 # Create your models here - each model will create a table
 
@@ -41,6 +42,10 @@ class Post(models.Model):
     status = models.CharField(
         max_length=10, choices=STATUS_CHOICES, default="draft"
     )  # Can only be from the STATUS_CHOICES given
+
+    tags = (
+        TaggableManager()
+    )  # Allows you to add tags to the post, ordering of fields drives ordering in admin UI
 
     class Meta:
         # Contains the metadata - sort results by the 'publish' field in descending order
