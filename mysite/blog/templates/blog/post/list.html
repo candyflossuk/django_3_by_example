@@ -4,18 +4,29 @@
 
 {% block content %}
     <h1>My Blog</h1>
+    {% if tag %}
+        <h2>Posts tagged with "{{ tag.name }}</h2>
+    {% endif %}
     {% for post in posts %}
         <h2>
             <a href="{{ post.get_absolute_url }}">
                 {{ post.title }}
             </a>
         </h2>
+        <p class="tags">
+            Tags:
+            {% for tag in post.tags.all %}
+                <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+                    {{ tag.name }}
+                </a>
+            {% endfor %}
+        </p>
         <p class="date">
             Published {{ post.publish }} by {{ post.author }}
         </p>
         {{ post.body|truncatewords:30|linebreaks}}
         <!--truncatewords and linebreaks are template filters - applied to output -->
     {% endfor %}
-    {% include "pagination.html" with page=page_obj %} <!-- Changed pagination - ListView generic view passes
+    {% include "pagination.html" with page=posts %} <!-- Changed pagination - ListView generic view passes
      selected page in variable called page_obj, so edit post/list.html -->
 {% endblock %}

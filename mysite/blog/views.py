@@ -4,6 +4,7 @@ from .models import Post, Comment
 from django.views.generic import ListView
 from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
+from taggit.models import Tag
 
 # Create your views here - a view is just Python function that receives a web req and returns a response
 # All logic to return desired response goes inside the view
@@ -18,8 +19,16 @@ class PostListView(ListView):
     template_name = "blog/post/list.html"  # Use custom templat to render page
 
 
-def post_list(request):  # request param required by all views
+def post_list(request, tag_slug=None):  # request param required by all views
     object_list = Post.published.all()
+    tag = None
+
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        object_list = object_list.filter(
+            tags__in=[tag]
+        )  # filter list by ones containing tag
+
     paginator = Paginator(
         object_list, 3
     )  # 3 posts per page - Instantiate Paginator class with number of objects to display per page
@@ -39,7 +48,9 @@ def post_list(request):  # request param required by all views
 
     # Use render() to render the list of posts with the template
     # Takes request context into account (template context processors are callables that set variables into the context)
-    return render(request, "blog/post/list.html", {"page": page, "posts": posts})
+    return render(
+        request, "blog/post/list.html", {"page": page, "posts": posts, "tag": tag}
+    )
 
 
 def post_detail(request, year, month, day, post):
