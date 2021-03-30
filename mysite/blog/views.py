@@ -5,6 +5,7 @@ from django.views.generic import ListView
 from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
 from taggit.models import Tag
+from django.db.models import Count
 
 # Create your views here - a view is just Python function that receives a web req and returns a response
 # All logic to return desired response goes inside the view
@@ -84,6 +85,24 @@ def post_detail(request, year, month, day, post):
         # Create comment form - if GET
         comment_form = CommentForm()
 
+    # List of similar posts
+    """
+    Retrieve a Python list of IDs for the tags of the current post, flat=True
+    ensures you get a list of single values rather than tuples
+    """
+    post_tag_ids = post.tags.values_list("id", flat=True)
+    """
+    You then get all published posts with these tags excluding the post itself
+    """
+    similar_posts = Post.published.filter(tags__in=post_tag_ids).exclude(id=post.id)
+    """
+    Your order the result by the number of shared tags and by publish to display the most recent posts 
+    first with the same number of tags. You then slice the result to get the first four posts
+    """
+    similar_posts = similar_posts.annotate(same_tags=Count("tags")).order_by(
+        "-same_tags", "-publish"
+    )[:4]
+
     return render(
         request,
         "blog/post/detail.html",
@@ -92,6 +111,7 @@ def post_detail(request, year, month, day, post):
             "comments": comments,
             "new_comment": new_comment,
             "comment_form": comment_form,
+            "similar_posts": similar_posts,
         },
     )
 
