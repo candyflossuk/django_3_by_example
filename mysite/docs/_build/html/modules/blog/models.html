@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Models &#8212; Django 3 By Example 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Views" href="views.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-blog.models">
+<span id="models"></span><h1>Models<a class="headerlink" href="#module-blog.models" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="blog.models.Comment">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">blog.models.</span></code><code class="sig-name descname"><span class="pre">Comment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Comment" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py exception">
+<dt id="blog.models.Comment.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">DoesNotExist</span></code><a class="headerlink" href="#blog.models.Comment.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt id="blog.models.Comment.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></code><a class="headerlink" href="#blog.models.Comment.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Comment.active">
+<code class="sig-name descname"><span class="pre">active</span></code><a class="headerlink" href="#blog.models.Comment.active" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Comment.body">
+<code class="sig-name descname"><span class="pre">body</span></code><a class="headerlink" href="#blog.models.Comment.body" title="Permalink to this definition">¶</a></dt>
+<dd><p>auto_now_add - set field to now when object is first created. If you set a value for this field
+on creation - it will be ignored unless auto_now_add=True. Useful for ‘created’ fields
+auto_now_add, auto_now and default are mutually exclusive - any combination will cause an error.
+auto_now_add and auto_now (as of writing) - when set to True will set editable=False and blank=True</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Comment.created">
+<code class="sig-name descname"><span class="pre">created</span></code><a class="headerlink" href="#blog.models.Comment.created" title="Permalink to this definition">¶</a></dt>
+<dd><p>auto_now - automatically sets the field to now every time the object is saved. Useful for last-modified fields.
+This value cannot be overridden. This is only updated on Model.save()</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Comment.email">
+<code class="sig-name descname"><span class="pre">email</span></code><a class="headerlink" href="#blog.models.Comment.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Comment.get_next_by_created">
+<code class="sig-name descname"><span class="pre">get_next_by_created</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=True</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Comment.get_next_by_created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Comment.get_next_by_updated">
+<code class="sig-name descname"><span class="pre">get_next_by_updated</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=True</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Comment.get_next_by_updated" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Comment.get_previous_by_created">
+<code class="sig-name descname"><span class="pre">get_previous_by_created</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=False</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Comment.get_previous_by_created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Comment.get_previous_by_updated">
+<code class="sig-name descname"><span class="pre">get_previous_by_updated</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=False</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Comment.get_previous_by_updated" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Comment.id">
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#blog.models.Comment.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Comment.name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#blog.models.Comment.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Comment.objects">
+<code class="sig-name descname"><span class="pre">objects</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#blog.models.Comment.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Comment.post">
+<code class="sig-name descname"><span class="pre">post</span></code><a class="headerlink" href="#blog.models.Comment.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Comment.post_id">
+<code class="sig-name descname"><span class="pre">post_id</span></code><a class="headerlink" href="#blog.models.Comment.post_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Comment.updated">
+<code class="sig-name descname"><span class="pre">updated</span></code><a class="headerlink" href="#blog.models.Comment.updated" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="blog.models.Post">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">blog.models.</span></code><code class="sig-name descname"><span class="pre">Post</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slug</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">publish</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py exception">
+<dt id="blog.models.Post.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">DoesNotExist</span></code><a class="headerlink" href="#blog.models.Post.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt id="blog.models.Post.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></code><a class="headerlink" href="#blog.models.Post.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.STATUS_CHOICES">
+<code class="sig-name descname"><span class="pre">STATUS_CHOICES</span></code><em class="property"> <span class="pre">=</span> <span class="pre">(('draft',</span> <span class="pre">'Draft'),</span> <span class="pre">('published',</span> <span class="pre">'Published'))</span></em><a class="headerlink" href="#blog.models.Post.STATUS_CHOICES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.author">
+<code class="sig-name descname"><span class="pre">author</span></code><a class="headerlink" href="#blog.models.Post.author" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.author_id">
+<code class="sig-name descname"><span class="pre">author_id</span></code><a class="headerlink" href="#blog.models.Post.author_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.body">
+<code class="sig-name descname"><span class="pre">body</span></code><a class="headerlink" href="#blog.models.Post.body" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.comments">
+<code class="sig-name descname"><span class="pre">comments</span></code><a class="headerlink" href="#blog.models.Post.comments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.created">
+<code class="sig-name descname"><span class="pre">created</span></code><a class="headerlink" href="#blog.models.Post.created" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Post.get_absolute_url">
+<code class="sig-name descname"><span class="pre">get_absolute_url</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use in templates to link to specific posts
+:return: Canonical URL for the Post model that can be used as a specific URL for the model resource</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Post.get_next_by_created">
+<code class="sig-name descname"><span class="pre">get_next_by_created</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=True</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.get_next_by_created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Post.get_next_by_publish">
+<code class="sig-name descname"><span class="pre">get_next_by_publish</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">publish&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=True</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.get_next_by_publish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Post.get_next_by_updated">
+<code class="sig-name descname"><span class="pre">get_next_by_updated</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=True</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.get_next_by_updated" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Post.get_previous_by_created">
+<code class="sig-name descname"><span class="pre">get_previous_by_created</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=False</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.get_previous_by_created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Post.get_previous_by_publish">
+<code class="sig-name descname"><span class="pre">get_previous_by_publish</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">publish&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=False</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.get_previous_by_publish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Post.get_previous_by_updated">
+<code class="sig-name descname"><span class="pre">get_previous_by_updated</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=False</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.get_previous_by_updated" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="blog.models.Post.get_status_display">
+<code class="sig-name descname"><span class="pre">get_status_display</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">status&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.get_status_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.id">
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#blog.models.Post.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.objects">
+<code class="sig-name descname"><span class="pre">objects</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#blog.models.Post.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.publish">
+<code class="sig-name descname"><span class="pre">publish</span></code><a class="headerlink" href="#blog.models.Post.publish" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.published">
+<code class="sig-name descname"><span class="pre">published</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;blog.models.PublishedManager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#blog.models.Post.published" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.slug">
+<code class="sig-name descname"><span class="pre">slug</span></code><a class="headerlink" href="#blog.models.Post.slug" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.status">
+<code class="sig-name descname"><span class="pre">status</span></code><a class="headerlink" href="#blog.models.Post.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.tagged_items">
+<code class="sig-name descname"><span class="pre">tagged_items</span></code><a class="headerlink" href="#blog.models.Post.tagged_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the one-to-many relation created
+by GenericRelation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">GenericRelation</span><span class="p">(</span><span class="n">Comment</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">post.comments</span></code> is a ReverseGenericManyToOneDescriptor instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.tags">
+<code class="sig-name descname"><span class="pre">tags</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;taggit.managers._TaggableManager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#blog.models.Post.tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.title">
+<code class="sig-name descname"><span class="pre">title</span></code><a class="headerlink" href="#blog.models.Post.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="blog.models.Post.updated">
+<code class="sig-name descname"><span class="pre">updated</span></code><a class="headerlink" href="#blog.models.Post.updated" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="blog.models.PublishedManager">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">blog.models.</span></code><code class="sig-name descname"><span class="pre">PublishedManager</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.PublishedManager" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="blog.models.PublishedManager.get_queryset">
+<code class="sig-name descname"><span class="pre">get_queryset</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.PublishedManager.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new QuerySet object. Subclasses can override this method to
+customize the behavior of the Manager.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Django 3 By Example</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../all-about-me.html">All about me</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Blog:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="views.html" title="previous chapter">Views</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Ross Humphrey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/modules/blog/models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

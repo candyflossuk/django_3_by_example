@@ -11,8 +11,13 @@ Welcome to Django 3 By Example's documentation!
    :caption: Contents:
 
    modules/all-about-me.rst
-   modules/views.rst
-   modules/models.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Blog:
+
+   modules/blog/views.rst
+   modules/blog/models.rst
 
 Indices and tables
 ==================
