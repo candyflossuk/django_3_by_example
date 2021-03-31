@@ -76,7 +76,17 @@ class Comment(models.Model):
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField()
+    """
+    auto_now_add - set field to now when object is first created. If you set a value for this field
+    on creation - it will be ignored unless auto_now_add=True. Useful for 'created' fields
+    auto_now_add, auto_now and default are mutually exclusive - any combination will cause an error.
+    auto_now_add and auto_now (as of writing) - when set to True will set editable=False and blank=True
+    """
     created = models.DateTimeField(auto_now_add=True)
+    """
+    auto_now - automatically sets the field to now every time the object is saved. Useful for last-modified fields.
+    This value cannot be overridden. This is only updated on Model.save()
+    """
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
 
