@@ -13,12 +13,19 @@ class PublishedManager(models.Manager):
 
 
 class Post(models.Model):
+    """
+    The name of the table 'blog_post' is derived from model metadata - but can be overriden
+    'id' - field is automatically created this behaviour can be overriden.
+    The 'settings' file will drive out the SQL syntax to use based on the DB that is there.
+    """
 
     objects = (
         models.Manager()
     )  # The default manager - if you want to add your own managers and keep default you must add it
     published = PublishedManager()  # Custom manager
 
+    # Don't use field names that conflict with the Models api - clean, save, delete (for example)
+    # For choices, first value in tuple is what is in db, second is displayed by field's form widget
     STATUS_CHOICES = (
         ("draft", "Draft"),
         ("published", "Published"),
