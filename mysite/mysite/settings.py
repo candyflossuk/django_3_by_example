@@ -8,6 +8,11 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
+
+Settings file is simply a python module with module-level variables.
+To see what settings you have changed from the default Django settings use - python manage.py diffsettings
+
+As this file contains sensitive information - you should try to limit access to it - using file permissions
 """
 
 import os
