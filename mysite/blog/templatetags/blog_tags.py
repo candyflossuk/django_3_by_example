@@ -18,3 +18,10 @@ def total_posts():
     :return: The total number of published Posts
     """
     return Post.published.count()
+
+
+# Includes the name of the template that will be rendered with the returned values. Inclusion tags have to return a dict
+@register.inclusion_tag("blog/post/latest_posts.html")
+def show_latest_posts(count=5):
+    latest_posts = Post.published.order_by("-publish")[:count]
+    return {"latest_posts": latest_posts}
