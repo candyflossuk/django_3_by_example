@@ -115,3 +115,6 @@ with the current models and existing migrations.
     * Provides you with Post.my_manager.all(), you can retrieve posts using Post.published.all()
   
 * The custom manager can be used as follows:
+
+## Create documentation 
+* Go to docs -> run `make html`

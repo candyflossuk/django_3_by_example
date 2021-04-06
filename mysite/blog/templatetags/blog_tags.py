@@ -1,11 +1,18 @@
 from django import template
 from django.db.models import Count
 from ..models import Post
+from django.utils.safestring import mark_safe
+import markdown
 
 """
 Each module that contains template tags needs to define register to be a valid tag library.
 """
 register = template.Library()
+
+
+@register.filter(name="markdown")
+def markdown_format(text):
+    return mark_safe(markdown.markdown(text))
 
 
 @register.simple_tag
