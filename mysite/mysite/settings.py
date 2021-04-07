@@ -33,6 +33,7 @@ DEBUG = True
 #  List of hosts/domains that this Django site can serve. Prevents HTTP Host header attacks
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
 
 # Application definition
 # Tells Django which applications are active for this site
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "blog.apps.BlogConfig",
     "taggit",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
 ]
 
 MIDDLEWARE = [
