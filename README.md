@@ -120,4 +120,4 @@ with the current models and existing migrations.
 * Go to docs -> run `make html`
 
 ## Install postgres
-`brew install postgresql'
+`brew install postgres'
