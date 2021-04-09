@@ -118,3 +118,6 @@ with the current models and existing migrations.
 
 ## Create documentation 
 * Go to docs -> run `make html`
+
+## Install postgres
+`brew install postgresql'
