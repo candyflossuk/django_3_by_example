@@ -121,3 +121,6 @@ with the current models and existing migrations.
 
 ## Install postgres
 `brew install postgres'
+
+* Start server using:
+`pg_ctl -D /usr/local/var/postgres start`
