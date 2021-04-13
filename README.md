@@ -120,7 +120,6 @@ with the current models and existing migrations.
 * Go to docs -> run `make html`
 
 ## Install postgres
-`brew install postgres'
+* Install using the EDB installer: 
 
-* Start server using:
-`pg_ctl -D /usr/local/var/postgres start`
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads 
