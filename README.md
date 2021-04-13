@@ -120,6 +120,7 @@ with the current models and existing migrations.
 * Go to docs -> run `make html`
 
 ## Install postgres
-* Install using the EDB installer: 
+* Install using the Postgres.app
 
-https://www.enterprisedb.com/downloads/postgres-postgresql-downloads 
+https://postgresapp.com
+
