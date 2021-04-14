@@ -16,3 +16,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment  # indicates which model to use to build the form - Django builds the form dynamically
         fields = ("name", "email", "body")
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField()
