@@ -127,6 +127,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Changed as part of 3.2 Migration of Django - allows you to store 64 bit ids
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
