@@ -151,7 +151,9 @@ def post_search(request):
         )  # GET is used so its easy to share the URL (rather than POST)
         if form.is_valid():
             query = form.cleaned_data["query"]
-            search_vector = SearchVector("title", "body")
+            search_vector = SearchVector("title", weight="A") + SearchVector(
+                "body", weight="B"
+            )
             search_query = SearchQuery(
                 query
             )  # Create SearchQuery object to filter results by
@@ -159,7 +161,7 @@ def post_search(request):
                 Post.published.annotate(
                     search=search_vector, rank=SearchRank(search_vector, search_query)
                 )
-                .filter(search=search_query)
+                .filter(rank__gte=0.3)
                 .order_by("-rank")
             )  # Order by SearchRank to order by relevancy
     return render(
