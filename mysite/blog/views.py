@@ -6,7 +6,7 @@ from .forms import EmailPostForm, CommentForm, SearchForm
 from django.core.mail import send_mail
 from taggit.models import Tag
 from django.db.models import Count
-from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
 # Create your views here - a view is just Python function that receives a web req and returns a response
 # All logic to return desired response goes inside the view
@@ -151,9 +151,17 @@ def post_search(request):
         )  # GET is used so its easy to share the URL (rather than POST)
         if form.is_valid():
             query = form.cleaned_data["query"]
-            results = Post.published.annotate(
-                search=SearchVector("title", "body"),
-            ).filter(search=query)
+            search_vector = SearchVector("title", "body")
+            search_query = SearchQuery(
+                query
+            )  # Create SearchQuery object to filter results by
+            results = (
+                Post.published.annotate(
+                    search=search_vector, rank=SearchRank(search_vector, search_query)
+                )
+                .filter(search=search_query)
+                .order_by("-rank")
+            )  # Order by SearchRank to order by relevancy
     return render(
         request,
         "blog/post/search.html",
