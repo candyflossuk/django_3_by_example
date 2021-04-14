@@ -124,3 +124,7 @@ with the current models and existing migrations.
 
 https://postgresapp.com
 
+Run the following:
+* `psql blog`
+* `CREATE EXTENSION pg_trgm;`
+This will add the trigram extension to postgres
